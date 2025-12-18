@@ -17,7 +17,7 @@ st.write("Kindly enter the customer details to check whether they are likely to 
 # Collect user input
 Age = st.number_input("Customer Age", min_value=18, max_value=61, value=40)
 CityTier = st.number_input("The city tier of customer ", min_value=1, max_value=3, value=2)
-DurationOfPitch = st.number_input("The duration of the pitch",min_value=5,max_value=127 value=20)
+DurationOfPitch = st.number_input("The duration of the pitch",min_value=5,max_value=127,value=20)
 NumberOfPersonVisiting = st.number_input("Number of persons visiting", min_value=1, max_value=5, value=2)
 NumberOfFollowups = st.number_input("Number of followups", min_value=1, max_value=10, value=2)
 PreferredPropertyStar = st.number_input("The preferred property star rating", min_value=3, max_value=5, value=3)
