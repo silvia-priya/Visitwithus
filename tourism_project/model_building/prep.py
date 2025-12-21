@@ -12,6 +12,7 @@ from huggingface_hub import login, HfApi
 
 # Define constants for the dataset and output paths
 api = HfApi(token=os.getenv("HF_TOKEN"))
+#Extacting the datasets from the huggingspace and build dataframe
 DATASET_PATH = "hf://datasets/SilviaMartin/Visitwithus/tourism.csv"
 tour_dataset = pd.read_csv(DATASET_PATH)
 print("Dataset loaded successfully.")
@@ -73,24 +74,6 @@ ytest.to_csv("ytest.csv",index=False)
 files_to_upload = ["Xtrain.csv","Xtest.csv","ytrain.csv","ytest.csv"]
 repo_id_dataset = "SilviaMartin/Visitwithus" # Assuming this is the correct dataset repo ID
 
-# FIX: Explicitly delete files from Hugging Face Hub before re-uploading
-for file_path in files_to_upload:
-    try:
-        api.delete_file(
-            path_in_repo=file_path,
-            repo_id=repo_id_dataset,
-            repo_type="dataset",
-            commit_message=f"Delete {file_path} before re-upload"
-        )
-        print(f"Successfully deleted {file_path} from Hugging Face Hub.")
-    except HfApi.HTTPError as e:
-        # Ignore 404 errors (file not found), which means it didn't exist to delete
-        if e.response.status_code == 404:
-            print(f"{file_path} not found on Hugging Face Hub, skipping deletion.")
-        else:
-            print(f"Error deleting {file_path} from Hugging Face Hub: {e}")
-    except Exception as e:
-        print(f"An unexpected error occurred while trying to delete {file_path}: {e}")
 
 # Now upload the new files, ensuring a fresh commit
 for file_path in files_to_upload:

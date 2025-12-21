@@ -15,17 +15,17 @@ import os
 from huggingface_hub import login, HfApi, create_repo
 from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
 import mlflow
+import subprocess
 
-mlflow.set_tracking_uri("http://localhost:5000")
-mlflow.set_experiment("MLOps_experiment11")
+# #start the mlflow server at port 5000
+# process = subprocess.Popen(["mlflow", "server", "--port", "5000"])
+
+#set the tracking URL
+mlflow.set_tracking_uri(public_url)
+mlflow.set_experiment("MLOps_experiment13")
 
 
 api = HfApi(token=os.getenv("HF_TOKEN"))
-# Xtrain_path = "hf://datasets/SilviaMartin/Visitwithus/Xtrain.csv"
-# Xtest_path = "hf://datasets/SilviaMartin/Visitwithus/Xtest.csv"
-# ytrain_path = "hf://datasets/SilviaMartin/Visitwithus/ytrain.csv"
-# ytest_path = "hf://datasets/SilviaMartin/Visitwithus/ytest.csv"
-
 
 from huggingface_hub import hf_hub_download
 import pandas as pd
@@ -145,7 +145,7 @@ with mlflow.start_run():
     print(f"Model saved as artifact at: {model_path}")
 
     # Upload to Hugging Face
-    repo_id = "SilviaMartin/Visitwithus"
+    repo_id = "SilviaMartin/Visitwithus-model"
     repo_type = "model"
 
     # Step 1: Check if the space exists

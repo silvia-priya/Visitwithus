@@ -10,8 +10,8 @@ model_path = hf_hub_download(repo_id="SilviaMartin/Visitwithus", filename="visit
 model = joblib.load(model_path)
 
 # Streamlit UI for Customer Churn Prediction
-st.title("Customer Purchase Prediction App")
-st.write("The Customer Purchase Prediction App predicts whether customers will purchase the newly introduced Wellness Tourism Package before contacting them")
+st.title("Tourism package  Prediction App")
+st.write("The App predicts whether customers will purchase the newly introduced Wellness Tourism Package before contacting them")
 st.write("Kindly enter the customer details to check whether they are likely to purchase.")
 
 # Collect user input
@@ -23,7 +23,7 @@ NumberOfFollowups = st.number_input("Number of followups", min_value=1, max_valu
 PreferredPropertyStar = st.number_input("The preferred property star rating", min_value=3, max_value=5, value=3)
 NumberOfTrips = st.number_input("Number of trips", min_value=1, max_value=22, value=2)
 Passport = st.radio("Having Passport?", [0, 1])
-OwnCar = st.radio("Having Car?", [0, 1])
+OwnCar=st.radio("Having Car?", [0, 1])
 NumberOfChildrenVisiting = st.number_input("Number of children visiting", min_value=0, max_value=3, value=2)
 MonthlyIncome=st.number_input("Specify the monthly income",min_value=1000,max_value=100000,value=3000)
 PitchSatisfactionScore = st.number_input("Pitch Satisfaction Score", min_value=1, max_value=5, value=3)
